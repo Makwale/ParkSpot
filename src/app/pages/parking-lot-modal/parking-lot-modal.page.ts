@@ -19,6 +19,7 @@ export class ParkingLotModalPage implements OnInit {
   isLoading: boolean;
   pricings: Pricing[];
   paypal;
+  isDisabled: boolean;
   isPaymentSuccessful: boolean;
   isPayingOnline = {
     display: 'none'
@@ -33,7 +34,7 @@ export class ParkingLotModalPage implements OnInit {
 
   ngOnInit() {
     this.pricingsForm = this.fb.group({
-      price: [null, [Validators.required]],
+      price: [0, [Validators.required]],
       payOnline: [false]
     });
     this.getParkingLot();
@@ -47,7 +48,7 @@ export class ParkingLotModalPage implements OnInit {
         render({
           id: '#paypal',
           currency: 'ZAR',
-          value: '20',
+          value: localStorage.getItem('price'),
           onApprove: async () => {
             const toast = await this.toastController.create({
               message: 'Payment was successful',
@@ -79,8 +80,14 @@ export class ParkingLotModalPage implements OnInit {
       this.isPayingOnline = {
         display: 'none'
       };
+
     }
 
+  }
+
+  onSelectDuration(){
+    localStorage.setItem('price', this.pricingsForm.value.price.toString());
+    console.log(String(localStorage.getItem('price')));
   }
 
   async book() {

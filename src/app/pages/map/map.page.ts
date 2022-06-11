@@ -25,10 +25,9 @@ export class MapPage implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
   }
 
-  async ionViewDidEnter() {
+  ionViewDidEnter() {
     mapboxgl.accessToken = 'pk.eyJ1IjoibWFudWVsbWFrd2FsZSIsImEiOiJja2hsc3lmYWUyZzRnMnRsNnY2NWIyeGR6In0.1MGnfpXj_dV2QBO3SchfqA';
     navigator.geolocation.getCurrentPosition(pos => {
       console.log(pos.coords);
@@ -39,6 +38,7 @@ export class MapPage implements OnInit {
         center: [pos.coords.longitude, pos.coords.latitude],
         zoom: 13
       });
+      console.log('test');
       this.getParkingLots();
     });
   }

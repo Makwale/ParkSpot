@@ -10,11 +10,11 @@
         </ion-badge>
     </ion-item>
     <form [formGroup]="pricingsForm" *ngIf="parkingLot">
-        <ion-radio-group formControlName="price">
+        <ion-radio-group  (ionChange)="onSelectDuration()"  formControlName="price">
             <ion-item color="dark" *ngFor="let pricing of pricings">
                 <ion-label>{{pricing.duration}} Minutes</ion-label>
                 <ion-label style="font-weight: bold;" slot="end">{{pricing.price | currency: 'R'}}</ion-label>
-                <ion-radio color="light" slot="start" [value]="pricing"></ion-radio>
+                <ion-radio color="light" slot="start" [value]="pricing.price"></ion-radio>
             </ion-item>
         </ion-radio-group>
         <ion-item color="dark">
@@ -22,7 +22,9 @@
             <ion-toggle (ionChange)="onPayOnlineChange()" formControlName="payOnline" color="success"></ion-toggle>
         </ion-item>
     </form>
-    <div style="width: 98%; margin: auto;" [ngStyle]="isPayingOnline" id="paypal"></div>
+    <div id="paypal-container">
+        <div disabled="true" style="width: 98%; margin: auto;" [ngStyle]="isPayingOnline" id="paypal"></div>
+    </div>
     <ion-button *ngIf="parkingLot" style="border-radius: 10px;" color="secondary" expand="block" [disabled]="isLoading"
         (click)="book()">
         <span *ngIf="!isLoading">
