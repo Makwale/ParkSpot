@@ -1,0 +1,39 @@
+<ion-header collapse="fade">
+  <ion-toolbar color="dark">
+    <ion-title>ParkSpot</ion-title>
+    <ion-buttons slot="end">
+      <ion-button shape="round" [disabled]="isLoading" color="light" (click)="logout()" *ngIf="user">
+        <ion-icon *ngIf="!isLoading" name="log-out"></ion-icon>
+        <ion-spinner *ngIf="isLoading"></ion-spinner>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-tabs>
+  <ion-tab-bar slot="bottom" color="dark">
+    <ion-tab-button tab="map">
+      <ion-icon name="map"></ion-icon>
+      <ion-label>Map</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="!user" tab="signin">
+      <ion-icon name="log-in"></ion-icon>
+      <ion-label>Sign In</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="!user" tab="signup">
+      <ion-icon name="person-add"></ion-icon>
+      <ion-label>Sign Up</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="user" tab="account">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Account</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="user" tab="bookings">
+      <ion-icon name="list"></ion-icon>
+      <ion-label>Bookings</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

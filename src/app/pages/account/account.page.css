@@ -1,0 +1,65 @@
+.main-container {
+    background-color: #222428;
+    padding-top: 20%;
+    height: 100vh;
+}
+
+ion-avatar {
+    margin: auto;
+    height: fit-content;
+    width: fit-content;
+    margin-bottom: 5px;
+    color: white
+}
+
+.username {
+    background-color: grey;
+    margin: auto;
+    border-radius: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.container {
+    border-top-left-radius: 40px;
+    background-color: rgb(250, 250, 250);
+    height: 100%;
+    position: relative;
+    margin-top: 20%;
+}
+
+form {
+    margin: 0;
+    width: 80%;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.item {
+    border-radius: 15px;
+    background-color: white;
+    margin-top: 10px;
+}
+
+.input {
+    background-color: white;
+    margin-top: 10px;
+}
+
+.button {
+    margin-top: 10px;
+    --border-radius: 15px
+}

@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-title>Sign in</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="main-container">
+        <div class="container">
+            <form [formGroup]="signinForm">
+                <ion-item class="item ">
+                    <ion-label class="label" position="stacked">Username</ion-label>
+                    <ion-input formControlName="username" placeholder="Your username or email" class="input"
+                        type="text"></ion-input>
+                </ion-item>
+                <ion-item class="item">
+                    <ion-label class="label" position="stacked">Password</ion-label>
+                    <ion-input formControlName="password" placeholder="Your password" class=" input" type="password">
+                    </ion-input>
+                </ion-item>
+                <ion-button (click)="signin()" class="button" size="default" expand="block" color="dark"
+                    [disabled]="isLoading">
+                    <span *ngIf="!isLoading">Sign in</span>
+                    <ion-spinner *ngIf="isLoading"></ion-spinner>
+                </ion-button>
+                <!-- <ion-label style="margin-left: 15px; margin-top: 5px;">Forgot password? <ion-badge
+                        style="margin-top: 5px;" color="secondary">click here
+                    </ion-badge>
+                </ion-label> -->
+            </form>
+        </div>
+    </div>
+</ion-content>

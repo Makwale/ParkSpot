@@ -1,0 +1,33 @@
+<ion-content class="container" color="dark">
+    <ion-progress-bar color="light" *ngIf="!parkingLot" type="indeterminate"></ion-progress-bar>
+    <ion-item *ngIf="parkingLot" color="dark">
+        <ion-badge color="success" slot="start">{{parkingLot?.availableSpots}}</ion-badge>
+        <ion-label class="ion-margin-auto">
+            {{parkingLot?.name}}
+        </ion-label>
+        <ion-badge (click)="navigate()" slot="end">
+            <ion-icon name="navigate"></ion-icon>
+        </ion-badge>
+    </ion-item>
+    <form [formGroup]="pricingsForm" *ngIf="parkingLot">
+        <ion-radio-group formControlName="price">
+            <ion-item color="dark" *ngFor="let pricing of pricings">
+                <ion-label>{{pricing.duration}} Minutes</ion-label>
+                <ion-label style="font-weight: bold;" slot="end">{{pricing.price | currency: 'R'}}</ion-label>
+                <ion-radio color="light" slot="start" [value]="pricing"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+        <ion-item color="dark">
+            <ion-label>Pay Online</ion-label>
+            <ion-toggle (ionChange)="onPayOnlineChange()" formControlName="payOnline" color="success"></ion-toggle>
+        </ion-item>
+    </form>
+    <div style="width: 98%; margin: auto;" [ngStyle]="isPayingOnline" id="paypal"></div>
+    <ion-button *ngIf="parkingLot" style="border-radius: 10px;" color="secondary" expand="block" [disabled]="isLoading"
+        (click)="book()">
+        <span *ngIf="!isLoading">
+            Book
+        </span>
+        <ion-spinner *ngIf="isLoading"></ion-spinner>
+    </ion-button>
+</ion-content>

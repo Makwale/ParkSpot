@@ -1,0 +1,11 @@
+.button {
+    --border-radius: 15px
+}
+
+ion-badge {
+    --border-radius: 30px
+}
+
+.container {
+    border-radius: 10px;
+}

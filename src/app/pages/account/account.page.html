@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-title>Sign up</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="main-container">
+        <ion-avatar>
+            <img src="assets/account.svg">
+        </ion-avatar>
+        <div style="text-align: center;">
+            <ion-label class="username">
+                {{auth?.user?.getUsername()}}
+            </ion-label>
+        </div>
+        <div class="container">
+            <form [formGroup]="userForm">
+                <ion-item class="item ">
+                    <ion-label class="label" position="stacked">Name</ion-label>
+                    <ion-input formControlName="name" placeholder="Your name" class="input" type="text"></ion-input>
+                </ion-item>
+                <div *ngIf="name.dirty && name.touched">
+                    <div *ngIf="name.hasError('required') ">
+                        <small style="color: red; margin-left: 5px;">Name is <strong><span
+                                    style="letter-spacing: .5px;">required</span></strong></small>
+                    </div>
+
+                    <div *ngIf="name.hasError('pattern')">
+                        <small style="color: red; margin-left: 5px;" errors>Name must not have a special charector
+                            or a
+                            number</small>
+                    </div>
+
+                    <div *ngIf="name.hasError('minlength')">
+                        <small style="color: red; margin-left: 5px;" errors>Name must have atleast 3 letters</small>
+                    </div>
+                </div>
+                <ion-item class="item ">
+                    <ion-label class="label" position="stacked">Surname</ion-label>
+                    <ion-input formControlName="surname" placeholder="Your surname" class="input" type="text">
+                    </ion-input>
+                </ion-item>
+                <div *ngIf="surname.dirty && surname.touched">
+                    <div *ngIf="surname.hasError('required') ">
+                        <small style="color: red; margin-left: 5px;">Surname is <strong><span
+                                    style="letter-spacing: .5px;">required</span></strong></small>
+                    </div>
+
+                    <div *ngIf="surname.hasError('pattern')">
+                        <small style="color: red; margin-left: 5px;" errors>Suraname must not have a special charector
+                            or a
+                            number</small>
+                    </div>
+
+                    <div *ngIf="surname.hasError('minlength')">
+                        <small style="color: red; margin-left: 5px;" errors>Surname must have atleast 3 letters</small>
+                    </div>
+                </div>
+                <ion-item class="item ">
+                    <ion-label class="label" position="stacked">Email</ion-label>
+                    <ion-input [disabled]="true" formControlName="email" placeholder="Your email" class="input"
+                        type="text"></ion-input>
+                </ion-item>
+                <ion-button (click)="updateAccount()" class="button" size="default" expand="block" color="dark"
+                    [disabled]="isLoading">
+                    <span *ngIf="!isLoading">Update</span>
+                    <ion-spinner *ngIf="isLoading"></ion-spinner>
+                </ion-button>
+            </form>
+
+        </div>
+    </div>
+</ion-content>

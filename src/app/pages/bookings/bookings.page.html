@@ -1,0 +1,23 @@
+<ion-content class="ion-padding" style="padding-top: px;">
+    <ion-progress-bar color="light" *ngIf="!bookings" type="indeterminate"></ion-progress-bar>
+    <div style="margin-top: 55px;">
+        <ion-card color="dark" *ngFor="let booking of bookings">
+            <ion-card-header>
+                <ion-card-subtitle>{{booking.creationDate | date: "MM/dd/yyyy hh'h'mm"}}</ion-card-subtitle>
+                <ion-card-title>{{booking.parkingLot.name}}</ion-card-title>
+            </ion-card-header>
+            <ion-item color="dark">
+                <ion-label slot="start">{{booking.duration}} Minutes</ion-label>
+                <ion-label style="font-weight: bold;" slot="end">{{booking.amount | currency:' R'}}</ion-label>
+            </ion-item>
+            <ion-item color="dark">
+                <ion-button (click)="cancel(booking)" slot="start" color="danger">
+                    <ion-label>Cancel</ion-label>
+                </ion-button>
+                <ion-badge (click)="navigate(booking)" slot="end">
+                    <ion-icon name="navigate"></ion-icon>
+                </ion-badge>
+            </ion-item>
+        </ion-card>
+    </div>
+</ion-content>

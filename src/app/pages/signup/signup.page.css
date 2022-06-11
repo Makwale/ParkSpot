@@ -1,0 +1,38 @@
+.main-container {
+    background-color: #222428;
+    height: 100%;
+    padding-top: 45%;
+}
+
+.container {
+    border-top-left-radius: 40px;
+    background-color: rgb(250, 250, 250);
+    height: 100%;
+    position: relative;
+}
+
+form {
+    margin: 0;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.item {
+    border-radius: 15px;
+    background-color: white;
+    margin-top: 10px;
+}
+
+.input {
+    background-color: white;
+    margin-top: 10px;
+}
+
+.button {
+    margin-top: 10px;
+    --border-radius: 15px
+}
