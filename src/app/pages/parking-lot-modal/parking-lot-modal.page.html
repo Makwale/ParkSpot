@@ -19,7 +19,7 @@
         </ion-radio-group>
         <ion-item color="dark">
             <ion-label>Pay Online</ion-label>
-            <ion-toggle (ionChange)="onPayOnlineChange()" formControlName="payOnline" color="success"></ion-toggle>
+            <ion-toggle [disabled]="!pricingsForm.get('price').valid" (ionChange)="onPayOnlineChange()" formControlName="payOnline" color="success"></ion-toggle>
         </ion-item>
     </form>
     <div id="paypal-container">

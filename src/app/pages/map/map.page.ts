@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/quotes */
 import { Component, OnInit } from '@angular/core';
 import { IonRouterOutlet } from '@ionic/angular';
@@ -9,7 +10,7 @@ import { ToastController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user/user.service';
 
 declare const mapboxgl: any;
-
+declare const MapboxGeocoder: any;
 @Component({
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.css']
@@ -38,6 +39,13 @@ export class MapPage implements OnInit {
         center: [pos.coords.longitude, pos.coords.latitude],
         zoom: 13
       });
+
+      this.map.addControl(
+        new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl
+        })
+      );
       console.log('test');
       this.getParkingLots();
     });

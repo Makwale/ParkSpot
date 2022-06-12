@@ -22,7 +22,7 @@
     "@apollo/client": "^3.4.7",
     "@awesome-cordova-plugins/launch-navigator": "^5.41.0",
     "@aws-amplify/ui-angular": "^2.3.8",
-    "@capacitor/android": "^3.4.3",
+    "@capacitor/android": "^3.5.1",
     "@capacitor/app": "1.1.1",
     "@capacitor/core": "3.4.3",
     "@capacitor/haptics": "1.1.4",

@@ -14,7 +14,7 @@ query GetUser($id: uuid!) {
     id
     name
     surname
-    bookings {
+    bookings(where: {deleted_at: {_is_null: true}}) {
       id
       creationDate: created_at
       amount
@@ -39,8 +39,8 @@ mutation UpdateUser($id: uuid!, $user: user_set_input!) {
 }`;
 
 export const DELETE_BOOKING = gql`
-mutation CanceelBooking($id: uuid!){
-  delete_booking_by_pk(id: $id){
+mutation CanceelBooking($id: uuid!) {
+  update_booking_by_pk(pk_columns: {id: $id}, _set: {deleted_at: now}) {
     id
   }
 }`;

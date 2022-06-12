@@ -18,7 +18,7 @@ export class ParkingLotModalPage implements OnInit {
   parkingLot: ParkingLot;
   isLoading: boolean;
   pricings: Pricing[];
-  paypal;
+  paypal: any;
   isDisabled: boolean;
   isPaymentSuccessful: boolean;
   isPayingOnline = {
@@ -33,8 +33,26 @@ export class ParkingLotModalPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.paypal = {
+        id: '#paypal',
+        currency: 'ZAR',
+        value: '0',
+        onApprove: async () => {
+          this.isPayingOnline = {
+            display: 'none'
+          };
+          const toast = await this.toastController.create({
+            message: 'Payment was successful',
+            duration: 4000,
+            color: 'success'
+          });
+          toast.present();
+          this.isPaymentSuccessful = true;
+        }
+    };
+
     this.pricingsForm = this.fb.group({
-      price: [0, [Validators.required]],
+      price: [null, [Validators.required]],
       payOnline: [false]
     });
     this.getParkingLot();
@@ -45,20 +63,8 @@ export class ParkingLotModalPage implements OnInit {
       next: ((response) => {
         this.parkingLot = (response.data as any).parkingLot;
         this.pricings = this.parkingLot.pricings;
-        render({
-          id: '#paypal',
-          currency: 'ZAR',
-          value: localStorage.getItem('price'),
-          onApprove: async () => {
-            const toast = await this.toastController.create({
-              message: 'Payment was successful',
-              duration: 4000,
-              color: 'success'
-            });
-            toast.present();
-            this.isPaymentSuccessful = true;
-          }
-        });
+        console.log(this.pricings);
+        render(this.paypal);
       }),
       error: (async (error) => {
         const toast = await this.toastController.create({
@@ -86,7 +92,8 @@ export class ParkingLotModalPage implements OnInit {
   }
 
   onSelectDuration(){
-    localStorage.setItem('price', this.pricingsForm.value.price.toString());
+    this.paypal.value = String(this.pricingsForm.value.price * 0.06);
+    localStorage.setItem('price', String(this.pricingsForm.value.price * 0.06));
     console.log(String(localStorage.getItem('price')));
   }
 
