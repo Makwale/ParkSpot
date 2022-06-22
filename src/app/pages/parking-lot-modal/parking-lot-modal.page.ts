@@ -77,7 +77,16 @@ export class ParkingLotModalPage implements OnInit {
     });
   }
 
-  onPayOnlineChange() {
+  async onPayOnlineChange() {
+    if (!this.userService.user) {
+      const toast = await this.toastController.create({
+        message: 'Sign in and try again',
+        duration: 4000,
+        color: 'warning'
+      });
+      toast.present();
+      return;
+    }
     if (this.pricingsForm.value.payOnline) {
       this.isPayingOnline = {
         display: 'block'
